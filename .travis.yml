@@ -3,12 +3,16 @@ language: php
 php:
   - 7.3.15
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 install:
   - composer selfupdate
   - composer install
 
 script:
-  - ./vendor/bin/phpunit
+  - ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php --configuration ./phpunit.xml.dist
 
 after_success:
-  - travis_retry php vendor/bin/coveralls#z
+  - travis_retry php vendor/bin/coveralls
