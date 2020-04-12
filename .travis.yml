@@ -8,7 +8,7 @@ install:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit --colors=always --coverage-text --coverage-clover build/logs/clover.xml
+  - ./vendor/bin/phpunit --colors=always --coverage-clover build/logs/clover.xml
 
 after_success:
   - travis_retry php vendor/bin/coveralls
