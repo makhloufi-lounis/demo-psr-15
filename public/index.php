@@ -30,7 +30,8 @@ $redirectMiddleware = function (ServerRequestInterface $request, ResponseInterfa
 };
 
 /** CSRF Middleware **/
-$csrfMiddleware =  new CsrfMiddleware();
+$session = [];
+$csrfMiddleware =  new CsrfMiddleware($session, 200);
 
 /** APP Middleware *
  * @param ServerRequestInterface $request

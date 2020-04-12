@@ -2,7 +2,8 @@
 require '../vendor/autoload.php';
 use App\CsrfMiddleware;
 
-$csrfMiddleware =  new CsrfMiddleware();
+$session = [];
+$csrfMiddleware =  new CsrfMiddleware($session, 200);
 ?>
 
 <h1> Contact form :</h1>
@@ -20,7 +21,10 @@ $csrfMiddleware =  new CsrfMiddleware();
         <textarea id="msg" name="user_message"></textarea>
     </div>
 
-    <input type="hidden" name="_csrf" value="<?php echo $csrfMiddleware->generateToken() ?>">
+    <input type="hidden" name="_csrf" value="<?php try {
+        echo $csrfMiddleware->generateToken();
+    } catch (Exception $e) {
+    } ?>">
 
     <div style="margin-bottom: 10px; text-align: right">
         <input type="submit" value="Envoyer">
